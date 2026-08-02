@@ -1,0 +1,29 @@
+videopython-chatterbox
+======================
+
+This distribution is a fork of `chatterbox-tts` 0.1.7 by Resemble AI:
+
+    https://github.com/resemble-ai/chatterbox
+    https://pypi.org/project/chatterbox-tts/
+
+The Python source under `src/chatterbox/` is redistributed unchanged from
+upstream 0.1.7 with exactly ONE exception, in `src/chatterbox/__init__.py`:
+
+    -__version__ = version("chatterbox-tts")
+    +__version__ = version("videopython-chatterbox")
+
+Upstream looks up its own version from installed distribution metadata by name.
+Because this distribution is named `videopython-chatterbox`, that lookup raises
+`PackageNotFoundError` at import time and the package is unimportable without
+the change. All 50 other source files are byte-identical to upstream.
+
+The only other difference is the dependency metadata in `pyproject.toml` (see
+README.md for the rationale and verification).
+
+The original work is licensed under the MIT License, Copyright (c) 2025
+Resemble AI. The full license text is preserved verbatim in LICENSE and applies
+unchanged to this distribution.
+
+Model weights are NOT redistributed here. They are downloaded at runtime from
+the Hugging Face Hub by upstream's own code, under whatever terms Resemble AI
+publishes them.
