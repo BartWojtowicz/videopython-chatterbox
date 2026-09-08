@@ -1,7 +1,7 @@
 [project]
 name = "videopython-chatterbox"
-version = "0.1.7.post1"
-description = "Chatterbox TTS (Resemble AI) with corrected dependency metadata. Upstream source, one line changed."
+version = "0.1.7.post2"
+description = "Chatterbox TTS (Resemble AI) with corrected dependency metadata. Includes a short-text alignment fix."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }

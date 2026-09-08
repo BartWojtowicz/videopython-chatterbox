@@ -2,9 +2,11 @@
 
 [Chatterbox TTS](https://github.com/resemble-ai/chatterbox) by Resemble AI, republished with corrected dependency metadata.
 
-**The Python source is unchanged from upstream `chatterbox-tts` 0.1.7 except for a single line** (the
-self-version lookup in `chatterbox/__init__.py`, which must name this distribution or the package fails
-to import). Everything else that differs is dependency metadata in `pyproject.toml`.
+Version 0.1.7.post2 also fixes short-text alignment: repetition detection now
+checks that earlier text tokens exist before reducing their attention scores.
+Inputs with five or fewer text tokens retain long-tail and token-repetition EOS
+checks without raising an empty-reduction error. The distribution-name lookup
+and corrected dependency metadata remain the other changes from upstream 0.1.7.
 
 ```bash
 pip install videopython-chatterbox
