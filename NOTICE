@@ -7,7 +7,7 @@ This distribution is a fork of `chatterbox-tts` 0.1.7 by Resemble AI:
     https://pypi.org/project/chatterbox-tts/
 
 The Python source under `src/chatterbox/` is redistributed unchanged from
-upstream 0.1.7 with exactly ONE exception, in `src/chatterbox/__init__.py`:
+upstream 0.1.7 with two small changes. First, in `src/chatterbox/__init__.py`:
 
     -__version__ = version("chatterbox-tts")
     +__version__ = version("videopython-chatterbox")
@@ -15,9 +15,15 @@ upstream 0.1.7 with exactly ONE exception, in `src/chatterbox/__init__.py`:
 Upstream looks up its own version from installed distribution metadata by name.
 Because this distribution is named `videopython-chatterbox`, that lookup raises
 `PackageNotFoundError` at import time and the package is unimportable without
-the change. All 50 other source files are byte-identical to upstream.
+the change.
 
-The only other difference is the dependency metadata in `pyproject.toml` (see
+Second, in `src/chatterbox/models/t3/inference/alignment_stream_analyzer.py`,
+alignment-repetition detection is gated on S > 5. With five or fewer text
+tokens there are no earlier tokens to reduce, and the upstream expression
+raises an empty-reduction IndexError. Long-tail and generated-token repetition
+checks remain active. Other runtime source files are unchanged.
+
+The fork also changes dependency metadata and adds regression tests (see
 README.md for the rationale and verification).
 
 The original work is licensed under the MIT License, Copyright (c) 2025

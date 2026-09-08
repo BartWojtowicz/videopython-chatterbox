@@ -86,14 +86,21 @@ too; it is simply undeclared there.
 
 ## Relationship to upstream
 
-No functional changes are intended, ever. If Resemble AI relaxes their pins,
-this fork becomes unnecessary and should be abandoned in favour of
-`chatterbox-tts`.
+Changes are limited to packaging compatibility and the documented short-text
+alignment crash fix. If upstream incorporates these fixes and relaxes its pins,
+prefer `chatterbox-tts`.
 
 To rebase onto a new upstream release: replace `src/chatterbox/` wholesale,
-re-apply the one-line `__version__` change in `chatterbox/__init__.py`, verify
-every other file is byte-identical to the new sdist, bump `version` to
-`<upstream>.postN`, and re-check the dependency table above.
+re-apply the distribution-name lookup in `chatterbox/__init__.py`, and check
+whether the short-text alignment fix is already present before carrying it forward.
+Run `python -m pytest tests/test_short_alignment.py`, verify the remaining source
+against the new sdist, bump `version` to `<upstream>.postN`, and re-check the
+dependency table above.
+
+For 0.1.7.post2, all seven direct PyTorch tests pass (text widths 1–6 and 20).
+GPU synthesis of “za”, “Ja” and a full Polish sentence also succeeded without
+videopython's alignment monkeypatch. These checks cover the short-input crash;
+they do not establish general speech quality or performance.
 
 ## License
 
